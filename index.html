@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css"></link>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Local GPT</title>
+  </head>
+  <body>
+    <h1
+      class="text-5xl mt-3 sm:mt-0 font-[800] font-sans text-center bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 inline-block text-transparent bg-clip-text"
+    >
+      LOCALGPT
+    </h1>
+    <p
+      class="text-sm text-center pb-5 font-semibold mt-1 text-black/70 dark:text-white/80"
+    >
+      run IA in your browser
+    </p>
+    <button
+      class="bg-white m-2 md:m-0 md:my-2 border border-[#ccc] rounded-lg w-fit px-2 py-1 text-xs font-semibold text-neutral-500 mb-1 flex gap-2 items-center dark:bg-[#1e1f22] dark:text-white/90"
+    >
+      <svg
+        viewBox="0 0 256 256"
+        xmlns="http://www.w3.org/2000/svg"
+        width="14"
+        height="14"
+        preserveAspectRatio="xMidYMid"
+      >
+        <path fill="#F1511B" d="M121.666 121.666H0V0h121.666z" />
+        <path fill="#80CC28" d="M256 121.666H134.335V0H256z" />
+        <path fill="#00ADEF" d="M121.663 256.002H0V134.336h121.663z" />
+        <path fill="#FBBC09" d="M256 256.002H134.335V134.336H256z" />
+      </svg>
+      <span>Phi-3-mini-4k</span>
+    </button>
+    <section
+      class="w-[100dvw] max-w-[670px] h-[70vh] md:p-[3px] rounded-2xl relative overflow-hidden p-1"
+    >
+      <div
+        id="glow"
+        class="bg-gradient-to-t from-rose-500 to-blue-500 w-full h-full absolute left-0 top-0 animate-rotate hidden"
+      ></div>
+      <main
+        class="w-full h-full bg-white dark:bg-[#313338] border border-[#ccc] dark:border-[#616161] radius-lg p-4 overflow-auto rounded-xl scroll-smooth z-10 relative"
+      >
+        <ul class="flex flex-col p-0 h-fit min-h-full justify-end relative">
+          <div
+            id="container-download"
+            class="flex flex-col justify-center items-center left-0 top-0 h-full sm:px-40 absolute"
+          >
+            <svg
+              class="text-indigo-500"
+              xmlns="http://www.w3.org/2000/svg"
+              width="6rem"
+              height="6rem"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="M15.252 10.689c-.987-1.18-1.48-1.77-2.048-1.68c-.567.091-.832.803-1.362 2.227l-.138.368c-.15.405-.226.607-.373.756c-.146.149-.348.228-.75.386l-.367.143c-1.417.555-2.126.833-2.207 1.4c-.08.567.52 1.049 1.721 2.011l.31.25c.342.273.513.41.611.597c.1.187.115.404.146.837l.029.394c.11 1.523.166 2.285.683 2.545c.517.26 1.154-.155 2.427-.983l.329-.215c.362-.235.543-.353.75-.387c.208-.033.42.022.841.132l.385.1c1.485.386 2.228.58 2.629.173c.4-.407.193-1.144-.221-2.62l-.108-.38c-.117-.42-.176-.63-.147-.837c.03-.208.145-.39.374-.756l.21-.332c.807-1.285 1.21-1.927.94-2.438c-.269-.511-1.033-.553-2.562-.635l-.396-.022c-.434-.023-.652-.035-.841-.13c-.19-.095-.33-.263-.61-.599z"
+              />
+              <path
+                fill="currentColor"
+                d="m14.878 5.167l.183.522c.201.573.302.86.497 1.07c.196.212.464.324 1.001.547l.489.204c1.89.786 2.835 1.18 2.942 1.983c.045.334-.067.648-.33.998a4.151 4.151 0 0 0-.254-.06c-.526-.107-1.195-.143-1.877-.18l-.49-.026l-.23-.013l-.151-.18l-.316-.377c-.44-.528-.87-1.043-1.272-1.401c-.427-.382-1.141-.88-2.103-.726c-.972.156-1.49.863-1.77 1.367c-.259.468-.492 1.094-.728 1.727l-.17.458l-.072.193c-.054.02-.116.045-.193.076l-.456.178c-.63.247-1.253.49-1.717.757c-.498.287-1.2.817-1.339 1.793c-.137.967.378 1.673.767 2.092c.29.311.681.64 1.098.978c-1.569.425-2.403.584-2.877.072c-.534-.576-.258-1.62.295-3.71l.142-.54c.157-.595.236-.891.197-1.186c-.04-.294-.193-.553-.499-1.07l-.278-.47C4.29 8.422 3.752 7.512 4.11 6.787c.36-.724 1.379-.783 3.418-.9l.527-.03c.58-.034.869-.05 1.122-.185c.252-.135.439-.372.813-.848l.34-.432c1.316-1.673 1.974-2.509 2.73-2.38s1.11 1.137 1.817 3.154"
+              />
+            </svg>
+            <button
+              id="button-download"
+              type="button"
+              class="bg-indigo-500 px-4 py-2 rounded-lg text-white font-semibold mt-3 active:bg-indigo-300 disabled:grayscale disabled:bg-indigo-200"
+            >
+              Download
+            </button>
+            <small
+              class="text-sm overflow-hidden text-ellipsis whitespace-nowrap w-[280px] text-center text-black/60 dark:text-white mt-2 font-bold"
+            >
+            </small>
+            <p
+              id="start-text"
+              class="text-sm font-mono text-black/60 text-center mt-1 dark:text-white/80"
+            >
+            Download your model and run it locally, this will take a few minutes the first time you download it <b class="dark:text-white">(they require 2.5GB for this model, this same amount of ram is required)</b>
+            </p>
+          </div>
+        </ul>
+      </main>
+    </section>
+    <div class="mt-3 flex gap-1 relative p-2 md:p-0">
+      <input
+        class="rounded-full py-2 px-4 flex-1 border border-[#ccc] dark:bg-[#313338] dark:border-[#616161] outline-none dark:text-white"
+        placeholder="Send a message..."
+        type="text"
+        name="input-message"
+      />
+      <button
+        disabled
+        id="button-send"
+        type="button"
+        class="rounded-full px-3 font-semibold disabled:opacity-50 disabled:grayscale text-indigo-500 active:text-indigo-300"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="2rem"
+          height="2rem"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill="currentColor"
+            d="M1.724 1.053a.5.5 0 0 0-.714.545l1.403 4.85a.5.5 0 0 0 .397.354l5.69.953c.268.053.268.437 0 .49l-5.69.953a.5.5 0 0 0-.397.354l-1.403 4.85a.5.5 0 0 0 .714.545l13-6.5a.5.5 0 0 0 0-.894z"
+          />
+        </svg>
+      </button>
+    </div>
+    <!-- BACKGROUND -->
+    <div
+      class="fixed inset-0 -z-10 size-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem] opacity-40 dark:hidden"
+    >
+      <div
+        class="absolute inset-0 bg-[radial-gradient(circle_800px_at_50%_600px,rgba(190,119,198,0.3),transparent)]"
+      ></div>
+    </div>
+    <div
+      class="hidden  dark:flex fixed top-0 z-[-2] h-screen w-screen bg-[#1e1f22] bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.1),rgba(255,255,255,0))]"
+    ></div>
+    <!-- TEMPLATES -->
+    <template id="message-template">
+      <li class="message flex flex-col items-end mt-6">
+        <span
+          class="min-w-[40px] text-sm w-fit h-fit p-2 bg-gradient-to-bl from-slate-200 to-slate-300 dark:from-[#2e3035] dark:to-[#292b30] dark:text-white font-bold flex items-center justify-center rounded-full"
+          >You</span
+        >
+        <p
+          class="font-[450] bg-gradient-to-b from-slate-100 to-slate-200 dark:from-[#2e3035] dark:to-[#292b30] dark:text-[#dbdee1] rounded-xl px-3 py-3 mt-1 w-fit"
+        >
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit sequi,
+          nulla, eum ex quo earum optio maxime adipisci quaerat magni delectus
+          dolores repudiandae dignissimos expedita vel consequatur dolorem
+          voluptatibus tempora.
+        </p>
+      </li>
+    </template>
+    <template id="message-template-bot">
+      <li class="message flex flex-col mt-1">
+        <span
+          class="min-w-[40px] w-fit h-fit p-2 bg-gradient-to-bl from-indigo-400 to-indigo-600 text-white font-semibold flex items-center justify-center rounded-full shadow-md shadow-indigo-500/30 text-sm dark:shadow-none"
+        ></span>
+        <p
+          class="font-[450] bg-gradient-to-b text-md from-indigo-500 to-indigo-600 text-white rounded-xl px-3 py-3 mt-1 w-fit shadow-lg dark:shadow-none shadow-indigo-500/40"
+        ></p>
+      </li>
+    </template>
+    <footer class="my-3 bottom-2 right-3 text-center sm:text-end px-3" >
+      <p class="text-sm font-mono dark:text-white/50">Made with ❤️ by <a class="font-semibold dark:text-white/80 " target="_blank" href="https://github.com/danielMosvich">DanielMosvich
+    <script type="module" src="/main.js" defer></script>
+  </body>
+</html>
